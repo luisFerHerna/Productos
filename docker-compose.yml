@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: tienda_mysql
+    ports: ["3306:3306"]
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tienda_next
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: America/Mexico_City
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: tienda_phpmyadmin
+    ports: ["8080:80"]
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev  # Usa el Dockerfile de desarrollo
+    container_name: tienda_nextjs
+    ports: ["3000:3000"]
+    environment:
+      NODE_ENV: development  # Cambiado a development
+      DATABASE_URL: mysql://user:password@mysql:3306/tienda_next
+      CHOKIDAR_USEPOLLING: "true"  # Necesario para detectar cambios en Docker
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      mysql:
+        condition: service_healthy
+    # Opcional: Para desarrollo puedes exponer más puertos si necesitas debugging
+    # ports:
+    #   - "3000:3000"
+    #   - "9229:9229"  # Para Node.js inspector
+
+volumes:
+  mysql_data:
