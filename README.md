@@ -1,37 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Bodega no Aurrera - Next.js + MySQL + Docker
 
-## Getting Started
+Este es un sistema de tienda en línea desarrollado con **Next.js** y conectado a una **base de datos MySQL** mediante una **API personalizada**. El proyecto está listo para ejecutarse en contenedores gracias a **Docker**, facilitando su despliegue y desarrollo local.
 
-First, run the development server:
+---
+
+## 🚀 Características
+
+- 🔎 **Catálogo de productos**: Consulta todos los productos disponibles desde la base de datos.
+- 📦 **Detalles del producto**: Puedes ver información detallada de cada producto (nombre, precio, descripción, imagen, stock, etc.).
+- 🛒 **Carrito de compras**:
+  - Agrega productos al carrito.
+  - Ajusta la **cantidad** de cada producto.
+  - Añade múltiples productos.
+- ✅ **Simulación de compra**:
+  - Al confirmar la compra, se descuenta el stock correspondiente en la base de datos MySQL.
+  - El sistema verifica disponibilidad antes de procesar.
+
+---
+
+## 🧱 Tecnologías utilizadas
+
+- **Next.js** (Frontend + Backend API)
+- **MySQL 8.0** (Base de datos relacional)
+- **Docker Compose** (para orquestar los servicios)
+- **phpMyAdmin** (para administrar la base de datos desde el navegador)
+
+---
+
+## 🐳 Docker (Desarrollo Local)
+
+### Requisitos:
+
+- Docker
+- Docker Compose
+
+### 🔧 Iniciar el proyecto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker-compose up --build
 ```
+Esto levantará:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- mysql en el puerto 3306
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- phpMyAdmin en http://localhost:8080
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js en http://localhost:3000
 
-## Learn More
+## 📸 Capturas
 
-To learn more about Next.js, take a look at the following resources:
+### 📦 Catálogo
+![Catálogo](./public/images/1.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✅ Descripción
+![Descripción](./public/images/2.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🛒 Carrito de compras
+![Carrito](./public/images/3.png)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# tiendita-app
+## 📄 Licencia
+Este proyecto es de uso libre para fines educativos o personales.
