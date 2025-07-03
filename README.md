@@ -47,17 +47,18 @@ Esto levantará:
 
 - Next.js en http://localhost:3000
 
+---
 ## 📸 Capturas
 
 ### 📦 Catálogo
-![Catálogo](./public/images/1.png)
+![Catálogo](./public/1.png)
 
 ### ✅ Descripción
-![Descripción](./public/images/2.png)
+![Descripción](./public/2.png)
 
 ### 🛒 Carrito de compras
-![Carrito](./public/images/3.png)
+![Carrito](./public/3.png)
 
-
+---
 ## 📄 Licencia
 Este proyecto es de uso libre para fines educativos o personales.
